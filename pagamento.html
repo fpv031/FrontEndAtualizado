@@ -118,6 +118,23 @@
 </head>
 <body>
     
+<!-- Adicione este bloco no topo de cada arquivo HTML -->
+<nav style="background:#eee; padding:10px; margin-bottom:20px;">
+  <a href="login.html">Login</a> |
+  <a href="cadastro.html">Cadastro</a> |
+  <a href="perfilcliente.html">Perfil Cliente</a> |
+  <a href="perfiltrabalhador.html">Perfil Trabalhador</a> |
+  <a href="servicosdisp.html">Serviços Disponíveis</a> |
+  <a href="meusservicos.html">Meus Serviços</a> |
+  <a href="agendamentoservice.html">Agendar Serviço</a> |
+  <a href="conversa.html">Chat</a> |
+  <a href="confirmaagend.html">Confirma Agendamento</a> |
+  <a href="detalhes.html">Detalhes</a> |
+  <a href="minhadisp.html">Minha Disponibilidade</a> |
+  <a href="pagamento.html">Pagamento</a> |
+  <a href="solicite.html">Solicite Serviço</a>
+</nav>
+
 <header>
     <div class="logo">
         <img src="imagens/simboloDommusProSemFundo.png" alt="DomusPro">
@@ -193,4 +210,7 @@
         alert("Pagamento realizado com sucesso via " + method.toUpperCase() + "!");
     });
 
-    document.query
+    document.getElementById("card-fields").style.display = "block";
+</script>
+</body>
+</html>

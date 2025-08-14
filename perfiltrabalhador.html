@@ -197,6 +197,12 @@
             const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
             window.open(url, '_blank');
         });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // ...validação...
+            window.location.href = "perfilcliente.html"; // ou perfiltrabalhador.html
+        });
     </script>
 </body>
 </html>

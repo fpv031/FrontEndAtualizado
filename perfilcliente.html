@@ -201,6 +201,12 @@
     closeMenu.addEventListener('click', () => {
         sideMenu.classList.remove('active');
     });
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // ...validação...
+      window.location.href = "perfilcliente.html"; // ou perfiltrabalhador.html
+    });
 </script>
 
 </body>

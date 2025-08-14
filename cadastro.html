@@ -83,6 +83,19 @@
         color: #9333ea;
         border: 1px solid #9333ea;
     }
+
+    nav {
+        background: #eee;
+        padding: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    nav a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #9333ea;
+    }
 </style>
 </head>
 <body>
@@ -134,6 +147,7 @@
 
         alert("Cadastro realizado com sucesso!");
         document.getElementById("cadastroForm").reset();
+        window.location.href = "solicite.html";
     });
 
     function entrar() {
