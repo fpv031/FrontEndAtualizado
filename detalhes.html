@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalhes da Solicitação - DomusPro</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: linear-gradient(135deg, #dceeff, #f8e1ff);
+    }
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    .logo img {
+        height: 100px;
+    }
+    .menu-icon {
+        font-size: 28px;
+        cursor: pointer;
+    }
+    main {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+    }
+    .card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        max-width: 800px;
+        width: 100%;
+        padding: 20px;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .info-section {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .box {
+        flex: 1;
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    .box h3 {
+        margin-top: 0;
+    }
+    .box.blue {
+        border-color: #3b82f6;
+        background: #eff6ff;
+    }
+    .box.purple {
+        border-color: #a855f7;
+        background: #faf5ff;
+    }
+    .instructions {
+        border: 1px solid #ddd;
+        background: #f9fafb;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        border: none;
+        color: white;
+        transition: 0.2s;
+    }
+    .btn-green {
+        background: #22c55e;
+    }
+    .btn-green:hover {
+        background: #16a34a;
+    }
+    .btn-red {
+        background: #ef4444;
+    }
+    .btn-red:hover {
+        background: #dc2626;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="imagens/simboloDommusProSemFundo.png" alt="DomusPro">
+    </div>
+    <div class="menu-icon">&#9776;</div>
+</header>
+
+<main>
+    <div class="card">
+        <h2>Detalhes da Solicitação</h2>
+        
+        <div class="info-section">
+            <div class="box blue">
+                <h3>Serviço: Limpeza de Sala Completa</h3>
+                <p><b>Data:</b> 19 de Agosto de 2025</p>
+                <p><b>Hora:</b> 10:00 - 12:00</p>
+                <p><b>Sugestão Preço:</b> R$ 150,00</p>
+            </div>
+            <div class="box purple">
+                <h3>Cliente: Maria Souza</h3>
+                <p><b>Endereço:</b> Rua das Flores, 456, Bairro Azul</p>
+                <p><b>Telefone:</b> +55 (00) 2345-6799</p>
+                <p><b>Email:</b> maria.souza@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <b>Instruções Adicionais:</b>
+            <p>"Por favor, primeiro(a) limpe as janelas da sala e então o resto do ambiente. 
+            Traremos toalhas adicionais caso necessário. Eles serão mantidos em cima da escrivaninha."</p>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-green" onclick="aceitarServico()">Aceitar Serviço</button>
+            <button class="btn btn-red" onclick="recusarServico()">Recusar Serviço</button>
+        </div>
+    </div>
+</main>
+
+<script>
+    function aceitarServico() {
+        alert("Serviço aceito com sucesso!");
+    }
+    function recusarServico() {
+        alert("Serviço recusado.");
+    }
+</script>
+
+</body>
+</html>

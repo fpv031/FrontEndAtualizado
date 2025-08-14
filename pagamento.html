@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizar Pagamento</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(90deg, #e0f0ff, #f3e0ff);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    header {
+        width: 100%;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo img {
+        height: 100px;
+    }
+    .menu-icon {
+        font-size: 28px;
+        cursor: pointer;
+    }
+    main {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        width: 100%;
+    }
+    .card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 25px;
+        max-width: 600px;
+        width: 90%;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .summary {
+        background: #f8faff;
+        border: 1px solid #cce;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .summary div {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+    .total {
+        font-weight: bold;
+        color: #a855f7;
+    }
+    .payment-section {
+        border: 1px solid #cce;
+        background: #f8faff;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    label {
+        font-size: 14px;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+    .payment-methods {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    .payment-methods button {
+        flex: 1;
+        padding: 8px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        background: #fff;
+    }
+    .payment-methods button.active {
+        background: #a855f7;
+        color: white;
+        border: none;
+    }
+    .btn-pay {
+        width: 100%;
+        background: linear-gradient(90deg, #a855f7, #ec4899);
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+    .btn-pay:hover {
+        opacity: 0.9;
+    }
+</style>
+</head>
+<body>
+    
+<header>
+    <div class="logo">
+        <img src="imagens/simboloDommusProSemFundo.png" alt="DomusPro">
+    </div>
+    <div class="menu-icon">&#9776;</div>
+</header>
+
+<main>
+    <div class="card">
+        <h1>Finalizar Pagamento</h1>
+
+        <div class="summary">
+            <div><span>Cuidados com o Jardim</span> <span>R$ 150,00</span></div>
+            <div><span>Taxa de Serviço</span> <span>R$ 15,00</span></div>
+            <div class="total"><span>Total</span> <span>R$ 165,00</span></div>
+        </div>
+
+        <div class="payment-section">
+            <h3>Selecione a Forma de Pagamento</h3>
+            <div class="payment-methods">
+                <button type="button" class="active" data-method="credito">Cartão de Crédito</button>
+                <button type="button" data-method="debito">Débito Online</button>
+                <button type="button" data-method="boleto">Boleto Bancário</button>
+            </div>
+
+            <div id="card-fields">
+                <label>Número do Cartão</label>
+                <input type="text" id="card-number" placeholder="0000 0000 0000 0000">
+
+                <label>Validade (MM/AA)</label>
+                <input type="text" id="card-expiry" placeholder="MM/AA">
+
+                <label>CVV</label>
+                <input type="text" id="card-cvv" placeholder="123">
+            </div>
+        </div>
+
+        <button class="btn-pay" id="payNow">Pagar Agora</button>
+    </div>
+</main>
+
+<script>
+    const methodButtons = document.querySelectorAll(".payment-methods button");
+    const cardFields = document.getElementById("card-fields");
+
+    methodButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            methodButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            if (btn.dataset.method === "credito") {
+                cardFields.style.display = "block";
+            } else {
+                cardFields.style.display = "none";
+            }
+        });
+    });
+
+    document.getElementById("payNow").addEventListener("click", () => {
+        const method = document.querySelector(".payment-methods button.active").dataset.method;
+
+        if (method === "credito") {
+            const number = document.getElementById("card-number").value.trim();
+            const expiry = document.getElementById("card-expiry").value.trim();
+            const cvv = document.getElementById("card-cvv").value.trim();
+
+            if (!number || !expiry || !cvv) {
+                alert("Por favor, preencha todos os dados do cartão.");
+                return;
+            }
+        }
+
+        alert("Pagamento realizado com sucesso via " + method.toUpperCase() + "!");
+    });
+
+    document.query

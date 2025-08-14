@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro - DomusPro</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #dbeafe, #e0c3fc, #f9a8d4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        max-width: 800px;
+        width: 90%;
+    }
+
+    .left {
+        flex: 1;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0px;
+    }
+
+    .logo img {
+        height: 200px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background: #9333ea;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+
+    .right {
+        text-align: center;
+    }
+
+    .right img {
+        width: 150px;
+        border-radius: 10px;
+    }
+
+    .login-link {
+        margin-top: 10px;
+    }
+
+    .login-link button {
+        background: none;
+        color: #9333ea;
+        border: 1px solid #9333ea;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Parte esquerda - Cadastro -->
+    <div class="left">
+        <div class="logo">
+            <img src="imagens/simboloDommusProSemFundo.png" alt="Domus Pro Logo">
+        </div>
+        <form id="cadastroForm">
+            <input type="text" id="nome" placeholder="Nome">
+            <input type="email" id="email" placeholder="Email">
+            <input type="text" id="endereco" placeholder="Endereço">
+            <input type="tel" id="telefone" placeholder="Telefone">
+            <input type="password" id="senha" placeholder="Senha">
+            <button type="submit">Cadastrar-se</button>
+        </form>
+    </div>
+
+    <!-- Parte direita - Login -->
+    <div class="right">
+        <h3>Já possui conta?</h3>
+        <div class="login-link">
+            <button onclick="entrar()">Entrar</button>
+        </div>
+        <img src="imagens/robo cadastro.png" alt="Robô Limpeza">
+    </div>
+</div>
+
+<script>
+    document.getElementById("cadastroForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let nome = document.getElementById("nome").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let endereco = document.getElementById("endereco").value.trim();
+        let telefone = document.getElementById("telefone").value.trim();
+        let senha = document.getElementById("senha").value.trim();
+
+        if (!nome || !email || !endereco || !telefone || !senha) {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+
+        // Salva no localStorage
+        let usuario = { nome, email, endereco, telefone, senha };
+        localStorage.setItem("usuarioDomus", JSON.stringify(usuario));
+
+        alert("Cadastro realizado com sucesso!");
+        document.getElementById("cadastroForm").reset();
+    });
+
+    function entrar() {
+        let usuario = JSON.parse(localStorage.getItem("usuarioDomus"));
+        if (usuario) {
+            alert(`Bem-vindo de volta, ${usuario.nome}!`);
+        } else {
+            alert("Nenhum cadastro encontrado. Cadastre-se primeiro.");
+        }
+    }
+</script>
+
+</body>
+</html>

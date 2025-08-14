@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação do Serviço</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, #e0f0ff, #f3e0ff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+        }
+
+        .menu-icon {
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .service-info {
+            border: 1px solid #cce;
+            background: #f8faff;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .service-info strong {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        label {
+            font-size: 14px;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+            height: 60px;
+        }
+
+        .summary {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .summary div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .btn-confirm {
+            width: 100%;
+            background: linear-gradient(90deg, #a855f7, #ec4899);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn-confirm:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+</div>
+    <header>
+        <div class="logo">
+            <img src="imagens/simboloDommusProSemFundo.png" alt="DomusPro">
+        </div>
+        <div class="menu-icon">&#9776;</div>
+    </header>
+
+    <main>
+        <div class="card">
+            <h1>Detalhes e Confirmação do Serviço</h1>
+
+            <div class="service-info">
+                <strong>Aparagem de grama</strong>
+                <p>Serviço de jardinagem, incluindo retirada de pragas e alimentação do jardim.</p>
+                <p><b>Provedor:</b> Alice Mendes</p>
+            </div>
+
+            <label for="date">Data do Agendamento</label>
+            <input type="date" id="date">
+
+            <label for="time">Horário</label>
+            <input type="time" id="time">
+
+            <label for="notes">Instruções Específicas (Opcional)</label>
+            <textarea id="notes" placeholder="Ex: Favor não utilizar produtos químicos durante o procedimento"></textarea>
+
+            <div class="summary">
+                <div><span>Resumo do Pedido</span> <span id="price">R$ 150,00</span></div>
+                <div><span>Taxa do Serviço</span> <span id="fee">R$ 15,00</span></div>
+                <div class="total"><span>Total:</span> <span id="total">R$ 165,00</span></div>
+            </div>
+
+            <button class="btn-confirm" id="confirmBtn">Confirmar Agendamento</button>
+        </div>
+    </main>
+
+    <script>
+        document.querySelector('.menu-icon').addEventListener('click', () => {
+            alert('Menu ainda não implementado!');
+        });
+
+        document.getElementById('confirmBtn').addEventListener('click', () => {
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const notes = document.getElementById('notes').value;
+
+            if (!date || !time) {
+                alert("Por favor, preencha a data e o horário do agendamento.");
+                return;
+            }
+
+            alert(`Agendamento confirmado!\n\nData: ${date}\nHora: ${time}\nInstruções: ${notes || "Nenhuma"}\nTotal: R$ 165,00`);
+        });
+    </script>
+</body>
+</html>

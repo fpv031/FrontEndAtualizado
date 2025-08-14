@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minha Disponibilidade</title>
+<style>
+     body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(90deg, #e0f0ff, #f3e0ff);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    header {
+        width: 100%;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .logo img {
+        height: 100px;
+    }
+    .menu-icon {
+        font-size: 28px;
+        cursor: pointer;
+    }
+    .container {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        width: 500px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .days, .hours, .period {
+        margin-bottom: 20px;
+    }
+    label {
+        margin-right: 15px;
+    }
+    input[type="time"], input[type="date"] {
+        padding: 5px;
+        margin-right: 10px;
+    }
+    button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    .btn-add { background-color: #3466ff; }
+    .btn-auto { background-color: #a02cff; }
+    .btn-save { background-color: #a02cff; width: 100%; margin-top: 10px; }
+    .period-list {
+        margin-top: 10px;
+    }
+    .period-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        padding: 5px;
+        background: #f0f0f0;
+        border-radius: 5px;
+    }
+    .remove-btn {
+        color: red;
+        cursor: pointer;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <header>
+    <div class="logo">
+        <img src="imagens/simboloDommusProSemFundo.png" alt="DomusPro">
+    </div>
+    <div class="menu-icon">&#9776;</div>
+</header>
+
+<div class="container">
+    <h2>Minha Disponibilidade</h2>
+
+    <div class="days">
+        <label><input type="checkbox" value="Segunda-feira">Segunda-feira</label>
+        <label><input type="checkbox" value="Terça-feira">Terça-feira</label>
+        <label><input type="checkbox" value="Quarta-feira">Quarta-feira</label>
+        <label><input type="checkbox" value="Quinta-feira">Quinta-feira</label>
+        <label><input type="checkbox" value="Sexta-feira">Sexta-feira</label>
+        <label><input type="checkbox" value="Sábado">Sábado</label>
+        <label><input type="checkbox" value="Domingo">Domingo</label>
+    </div>
+
+    <div class="hours">
+        <label>Horário de início: <input type="time" id="startTime" value="09:00"></label>
+        <label>Horário de término: <input type="time" id="endTime" value="18:00"></label>
+    </div>
+
+    <div class="period">
+        <h3>Adicionar Período de Indisponibilidade:</h3>
+        <input type="date" id="periodStart">
+        <input type="date" id="periodEnd">
+        <button class="btn-add" onclick="addPeriod()">Adicionar Período</button>
+        <button class="btn-auto" onclick="generateMessage()">✨ Gerar Mensagem Automática</button>
+
+        <div class="period-list" id="periodList"></div>
+    </div>
+
+    <button class="btn-save" onclick="saveChanges()">Salvar Alterações</button>
+</div>
+
+<script>
+let periods = [];
+
+function addPeriod() {
+    const start = document.getElementById('periodStart').value;
+    const end = document.getElementById('periodEnd').value;
+    if (!start || !end) {
+        alert('Por favor, selecione datas válidas!');
+        return;
+    }
+    periods.push({ start, end });
+    renderPeriods();
+}
+
+function renderPeriods() {
+    const list = document.getElementById('periodList');
+    list.innerHTML = '';
+    periods.forEach((p, index) => {
+        const div = document.createElement('div');
+        div.className = 'period-item';
+        div.innerHTML = `Férias: ${p.start} - ${p.end} <span class="remove-btn" onclick="removePeriod(${index})">Remover</span>`;
+        list.appendChild(div);
+    });
+}
+
+function removePeriod(index) {
+    periods.splice(index, 1);
+    renderPeriods();
+}
+
+function generateMessage() {
+    if (periods.length === 0) {
+        alert('Nenhum período adicionado para gerar mensagem!');
+        return;
+    }
+    const last = periods[periods.length - 1];
+    alert(`Mensagem automática gerada: Estarei ausente de ${last.start} até ${last.end}.`);
+}
+
+function saveChanges() {
+    const checkedDays = Array.from(document.querySelectorAll('.days input:checked')).map(d => d.value);
+    const startTime = document.getElementById('startTime').value;
+    const endTime = document.getElementById('endTime').value;
+
+    console.log('Dias selecionados:', checkedDays);
+    console.log('Horário:', startTime, '-', endTime);
+    console.log('Períodos de indisponibilidade:', periods);
+
+    alert('Alterações salvas com sucesso!');
+}
+</script>
+
+</body>
+</html>

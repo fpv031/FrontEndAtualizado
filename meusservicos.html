@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meus Serviços - Domus Pro</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: linear-gradient(90deg, #e4f0ff, #f9e0ff);
+    }
+
+    /* Cabeçalho */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: transparent;
+        z-index: 10;
+    }
+    header img {
+        height: 100px;
+    }
+    .menu {
+        font-size: 26px;
+        cursor: pointer;
+    }
+
+    /* Conteúdo */
+    .container {
+        max-width: 900px;
+        margin: 100px auto;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    /* Abas */
+    .tabs {
+        display: flex;
+        justify-content: center;
+        background: #f1f1f1;
+        border-radius: 50px;
+        overflow: hidden;
+        width: fit-content;
+        margin: auto;
+    }
+    .tab {
+        padding: 10px 30px;
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-size: 16px;
+    }
+    .tab.active {
+        background: white;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+
+    /* Cards */
+    .cards {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .card {
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        width: 300px;
+    }
+    .status {
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        color: white;
+    }
+    .pendente {
+        background: orange;
+    }
+    .andamento {
+        background: lightgreen;
+        color: black;
+    }
+    .valor {
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    .btns {
+        display: flex;
+        gap: 8px;
+    }
+    .btn {
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        color: white;
+    }
+    .azul { background: royalblue; }
+    .vermelho { background: crimson; }
+    .amarelo { background: goldenrod; }
+
+</style>
+</head>
+<body>
+
+<header>
+    <img src="imagens/simboloDommusProSemFundo.png" alt="Domus Pro Logo"> <!-- Logo transparente -->
+    <div class="menu">&#9776;</div>
+</header>
+
+<div class="container">
+    <h1>Meus Serviços</h1>
+
+    <div class="tabs">
+        <button class="tab active" onclick="mostrarAba('ativos')">Ativos</button>
+        <button class="tab" onclick="mostrarAba('historico')">Histórico</button>
+    </div>
+
+    <div id="ativos" class="cards">
+        <!-- Card 1 -->
+        <div class="card">
+            <h3>Limpeza da Cozinha <span class="status pendente">Pendente</span></h3>
+            <p>Agendado para: 15/08/2025 às 14:00</p>
+            <p>Prestador: Arthur da Silva</p>
+            <p class="valor">R$ 150,00</p>
+            <div class="btns">
+                <button class="btn azul">Ver Detalhes</button>
+                <button class="btn vermelho">Cancelar</button>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <h3>Cuidado com o Jardim <span class="status andamento">Em Andamento</span></h3>
+            <p>Agendado para: 16/08/2025 às 09:00</p>
+            <p>Prestador: Alice Mendes</p>
+            <p class="valor">R$ 120,00</p>
+            <div class="btns">
+                <button class="btn azul">Ver Detalhes</button>
+                <button class="btn amarelo">Reagendar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="historico" class="cards" style="display:none;">
+        <div class="card">
+            <h3>Serviço Finalizado</h3>
+            <p>Data: 10/08/2025</p>
+            <p>Prestador: João Pedro</p>
+            <p class="valor">R$ 200,00</p>
+            <div class="btns">
+                <button class="btn azul">Ver Detalhes</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function mostrarAba(aba) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.cards').forEach(c => c.style.display = 'none');
+
+        document.querySelector(`#${aba}`).style.display = 'flex';
+        event.target.classList.add('active');
+    }
+</script>
+
+</body>
+</html>

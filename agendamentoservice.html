@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agendamento de Serviços - DomusPro</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #dbeafe, #e0c3fc, #f9a8d4);
+    }
+
+    /* Cabeçalho */
+    header {
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #0f172a;
+    }
+
+    .logo img {
+        height: 100px;
+    }
+
+    /* Menu */
+    .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .menu div {
+        width: 25px;
+        height: 3px;
+        background: #000;
+        border-radius: 2px;
+    }
+
+    /* Container principal */
+    .container {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        max-width: 900px;
+        width: 90%;
+        margin: 40px auto;
+    }
+
+    .left {
+        flex: 1;
+    }
+
+    .hello {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .card, .card-purple {
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+
+    .card {
+        background: #e0f2fe;
+    }
+
+    .card-purple {
+        background: #f3e8ff;
+    }
+
+    button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+    }
+
+    .card button {
+        background: #2563eb;
+    }
+
+    .card-purple button {
+        background: #9333ea;
+    }
+
+    .recent, .pending {
+        background: #f8fafc;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+    }
+
+    .recent p, .pending p {
+        margin: 5px 0;
+    }
+
+    .status {
+        color: green;
+        font-weight: bold;
+    }
+
+    .pending .status {
+        color: orange;
+    }
+
+    .robot {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .service-btn {
+        margin-left: 10px;
+        background: #16a34a;
+    }
+</style>
+</head>
+<body>
+
+<!-- Cabeçalho -->
+<header>
+    <div class="logo">
+        <img src="imagens/simboloDommusProSemFundo.png" alt="Domus Pro Logo">
+    </div>
+    <div class="menu">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</header>
+
+<!-- Container principal -->
+<div class="container">
+    <div class="left">
+        <div class="hello">Olá, Arthur! 👋</div>
+
+        <!-- Serviços Pendentes -->
+        <div class="pending">
+            <strong>Seus Serviços Pendentes</strong>
+            <div id="pending-list">
+                <p>Limpeza da sala - Hoje às 14:00 <span class="status">Aguardando</span> 
+                <button class="service-btn" onclick="concluirServico(this)">Concluir</button></p>
+            </div>
+        </div>
+
+        <!-- Botão para agendar -->
+        <div class="card-purple">
+            <strong>Precisa de algo mais?</strong>
+            <p>Agende um novo serviço de forma rápida e fácil.</p>
+            <button onclick="agendarServico()">Agendar Agora</button>
+        </div>
+
+        <!-- Serviços Recentes -->
+        <div class="recent">
+            <strong>Serviços Recentes</strong>
+            <div id="recent-list">
+                <p>Limpeza de Cozinha - 05/AGO <span class="status">Concluído</span></p>
+                <p>Cuidado com o Jardim - 28/JUL <span class="status">Concluído</span></p>
+            </div>
+            <a href="#">Ver Histórico Completo</a>
+        </div>
+    </div>
+
+    <div class="right">
+        <img src="imagens/RoboAgendamento.png" alt="Robô" class="robot">
+    </div>
+</div>
+
+<script>
+    function agendarServico() {
+        let servico = prompt("Digite o serviço que deseja agendar:");
+        if (servico) {
+            let hora = prompt("Digite o horário (ex: Hoje às 15:00):", "Hoje às ");
+            let pendingList = document.getElementById("pending-list");
+
+            let p = document.createElement("p");
+            p.innerHTML = `${servico} - ${hora} <span class="status">Aguardando</span> 
+                <button class="service-btn" onclick="concluirServico(this)">Concluir</button>`;
+
+            pendingList.appendChild(p);
+        }
+    }
+
+    function concluirServico(btn) {
+        let p = btn.parentElement;
+        btn.remove();
+        p.querySelector(".status").textContent = "Concluído";
+        p.querySelector(".status").style.color = "green";
+        document.getElementById("recent-list").appendChild(p);
+    }
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil do Cliente - DomusPro</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(90deg, #e0f0ff, #f3e0ff);
+    }
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+    }
+    .logo img {
+        height: 100px;
+    }
+    .menu-icon {
+        font-size: 28px;
+        cursor: pointer;
+    }
+    main {
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+    }
+    .profile-card {
+        background: white;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        max-width: 900px;
+        width: 100%;
+    }
+    .profile-header {
+        text-align: center;
+    }
+    .profile-header img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+    .profile-header h1 {
+        margin: 10px 0;
+    }
+    .info-section {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+    .box {
+        background: #f8faff;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        padding: 15px;
+        width: 280px;
+        font-size: 14px;
+    }
+    .box h3 {
+        margin-top: 0;
+        font-size: 16px;
+        color: #333;
+    }
+    .buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    .btn {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: white;
+    }
+    .btn-blue {
+        background: #2563eb;
+    }
+    .btn-gray {
+        background: #6b7280;
+    }
+    .btn-red {
+        background: #dc2626;
+    }
+    /* Menu lateral */
+    .side-menu {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 300px;
+        height: 100%;
+        background: white;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        padding: 20px;
+        transition: right 0.3s ease;
+        z-index: 1000;
+    }
+    .side-menu.active {
+        right: 0;
+    }
+    .side-menu h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .side-menu img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    .menu-option {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+        cursor: pointer;
+    }
+    .menu-option:hover {
+        background: #f1f5f9;
+    }
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="imagens/simboloDommusProSemFundo.png"DomusPro>
+    </div>
+    <div class="menu-icon">&#9776;</div>
+</header>
+
+<main>
+    <div class="profile-card">
+        <div class="profile-header">
+            <img src="imagens/roboperfil.jpg" alt="Foto de perfil">
+            <h1>Arthur da Silva</h1>
+        </div>
+
+        <div class="info-section">
+            <div class="box">
+                <h3>Informações de Contato</h3>
+                <p><b>E-mail:</b> arthur.silva@domus.com</p>
+                <p><b>Telefone:</b> (31) 90876-5432</p>
+                <p><b>Localização:</b> Belo Horizonte, MG</p>
+            </div>
+            <div class="box">
+                <h3>Redes Sociais</h3>
+                <p><b>LinkedIn:</b> <a href="https://linkedin.com/in/arthur" target="_blank">linkedin.com/in/arthur</a></p>
+                <p><b>Instagram:</b> <a href="https://instagram.com/arthur" target="_blank">@arthur</a></p>
+                <p><b>Site:</b> <a href="https://arthursilva.com" target="_blank">arthursilva.com</a></p>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-blue">Incidência de Perfil</button>
+            <button class="btn btn-gray">Mudar de Conta</button>
+            <button class="btn btn-red">Denunciar Conta</button>
+        </div>
+    </div>
+</main>
+
+<!-- Menu lateral -->
+<div class="side-menu" id="sideMenu">
+    <span class="close-btn" id="closeMenu">&times;</span>
+    <h2><img src="imagens/roboperfil.jpg"> Arthur da Silva</h2>
+    <div class="menu-option">Conta</div>
+    <div class="menu-option">Notificações</div>
+    <div class="menu-option">Armazenamento</div>
+    <div class="menu-option">Listas</div>
+    <div class="menu-option">Atualizações do App</div>
+    <div class="menu-option">Privacidade</div>
+    <div class="menu-option">Idioma do App</div>
+    <div class="menu-option">Ajuda</div>
+    <div class="menu-option">Dados</div>
+    <div class="menu-option">Chat</div>
+</div>
+
+<script>
+    const menuIcon = document.querySelector('.menu-icon');
+    const sideMenu = document.getElementById('sideMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    menuIcon.addEventListener('click', () => {
+        sideMenu.classList.add('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+        sideMenu.classList.remove('active');
+    });
+</script>
+
+</body>
+</html>
