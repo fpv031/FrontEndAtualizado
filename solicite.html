@@ -174,8 +174,8 @@
         <select id="servico">
             <option value="">Selecione um serviço</option>
             <option value="limpeza">Limpeza</option>
-            <option value="eletricista">Cuidado com Pets</option>
-            <option value="encanador">Cozinheiro</option>
+            <option value="Cuidador de Pets">Cuidado com Pets</option>
+            <option value="Cozinheiro">Cozinheiro</option>
         </select>
 
         <label>Onde o serviço será realizado?</label>
@@ -203,17 +203,33 @@
         alert(`Serviço de ${servico} agendado para ${local}.`);
     }
 
-    function buscarPrestadores() {
-        const servico = document.getElementById('servico').value;
-        const local = document.getElementById('local').value;
+function buscarPrestadores() {
+    const servico = document.getElementById('servico').value;
+    const local = document.getElementById('local').value;
 
-        if (!servico || !local) {
-            alert("Preencha serviço e local para buscar prestadores.");
-            return;
-        }
-
-        alert(`Buscando prestadores próximos para ${servico} em ${local}...`);
+    if (!servico || !local) {
+        alert("Preencha serviço e local para buscar prestadores.");
+        return;
     }
+
+    alert(`Buscando prestadores próximos para ${servico} em ${local}...`);
+
+    // Redireciona para a página de serviços disponíveis
+    window.location.href = "servicosdisp.html";
+}
+
+    // Simulação de carregamento de serviços
+    document.addEventListener('DOMContentLoaded', () => {
+        const servicoSelect = document.getElementById('servico');
+        const servicos = ['Limpeza', 'Cuidado com Pets', 'Cozinheiro'];
+
+        servicos.forEach(servico => {
+            const option = document.createElement('option');
+            option.value = servico.toLowerCase();
+            option.textContent = servico;
+            servicoSelect.appendChild(option);
+        });
+    });
 </script>
 
 </body>
